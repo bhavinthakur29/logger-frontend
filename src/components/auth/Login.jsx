@@ -1,10 +1,10 @@
-// src/components/Register.jsx
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { json, Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import api from "../utils/api";
+import api from "../../utils/api";
+import "./auth.css";
 
-function Register() {
+function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [pass, setPass] = useState(true);
@@ -14,11 +14,13 @@ function Register() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await api.post("/register", { username, password, name });
-      toast.success("Registration successful. Please login.");
-      navigate("/login");
+      const response = await api.post("/login", { username, password });
+      localStorage.setItem("token", response.data.token);
+      localStorage.setItem("user", JSON.stringify(response.data));
+      toast.success("Logged in successfully.");
+      navigate("/dashboard");
     } catch (error) {
-      toast.error("Registration failed. Please try again.");
+      toast.error("Login failed. Please check your credentials.");
     }
   };
 
@@ -29,15 +31,8 @@ function Register() {
 
   return (
     <div className="auth-form">
-      <h2>Register</h2>
+      <h2>Login</h2>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
         <input
           type="text"
           placeholder="Username"
@@ -58,13 +53,13 @@ function Register() {
             className={isActive ? "fa-solid fa-eye-slash" : "fa-solid fa-eye"}
           ></i>
         </div>
-        <button type="submit">Register</button>
+        <button type="submit">Login</button>
       </form>
       <p>
-        Already have an account? <Link to="/login">Login</Link>
+        Don't have an account? <Link to="/register">Register</Link>
       </p>
     </div>
   );
 }
 
-export default Register;
+export default Login;

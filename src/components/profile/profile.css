@@ -1,0 +1,255 @@
+.profile {
+  padding: 50px;
+  background-color: rgba(255, 255, 255, 0.208);
+  box-shadow: 0 0 10px -3px white;
+  border-radius: 20px;
+
+  & h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-weight: 500;
+
+    & span {
+      font-family: "Share Tech Mono", monospace;
+      text-transform: capitalize;
+      color: red;
+      font-weight: 700;
+    }
+  }
+
+  & .main {
+    display: flex;
+    flex-direction: row;
+
+    & .avatar {
+      margin-right: 25px;
+      width: 200px;
+      height: 200px;
+      overflow: hidden;
+      border-radius: 50%;
+      border: 3px solid red;
+      cursor: pointer;
+
+      & img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+      }
+
+      & .add-photo {
+        background-color: rgba(0, 0, 0, 0.441);
+        color: white;
+        position: relative;
+        padding: 5px;
+        padding-bottom: 12px;
+        text-align: center;
+        font-size: 14px;
+        transition: 300ms ease-in-out;
+
+        & i {
+          font-size: 16px;
+          margin-top: 5px;
+        }
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.693);
+        }
+      }
+
+      &:hover .add-photo {
+        transform: translateY(-52px);
+      }
+    }
+
+    & form {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 0 25px;
+      border-left: 2px solid whitesmoke;
+
+      & input,
+      & .currency-select {
+        min-height: 35px;
+        font-size: 16px;
+        margin: 5px 0;
+        width: 100%;
+        outline: none;
+        color: white;
+        border-radius: 5px;
+        background-color: rgba(0, 0, 0, 0.412);
+      }
+
+      & input {
+        padding: 5px 0;
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      & .username {
+        cursor: not-allowed;
+      }
+
+      & .currency-select {
+        display: flex;
+        justify-content: space-between;
+
+        & span {
+          color: white;
+          font-family: "Share Tech Mono", monospace;
+          text-transform: capitalize;
+          font-size: 18px;
+          font-weight: 900;
+          padding: 10px;
+        }
+
+        & select {
+          background-color: rgba(0, 0, 0, 0.412);
+          outline: none;
+          border: none;
+          border-left: 2px solid grey;
+          border-radius: 0 5px 5px 0;
+          color: white;
+          padding: 0 5px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}
+
+.button {
+  outline: none;
+  height: fit-content;
+  width: 175px;
+  margin: auto;
+  padding: 10px 0;
+  border-radius: 5px;
+  border: 2px solid rgb(0, 0, 107);
+  background-color: rgba(255, 255, 255, 0.637);
+  color: rgb(0, 0, 107);
+  font-weight: 700;
+  text-transform: uppercase;
+  transition: 250ms ease-in-out;
+
+  &:hover {
+    cursor: pointer;
+    background-color: rgb(0, 0, 107);
+    color: white;
+  }
+}
+
+.button-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 375px;
+
+  & .save {
+    border-color: green !important;
+    color: green !important;
+
+    &:hover {
+      background-color: green !important;
+      color: white !important;
+    }
+  }
+
+  & .cancel {
+    border-color: red !important;
+    color: red !important;
+
+    &:hover {
+      background-color: red !important;
+      color: white !important;
+    }
+  }
+}
+
+.profile-info {
+  padding: 20px;
+  width: 300px;
+  height: fit-content;
+
+  & .info-item {
+    border-bottom: 1px solid white;
+    margin-bottom: 5px;
+    width: 100%;
+    font-weight: 700;
+
+    & label {
+      color: rgb(215, 215, 215);
+      font-size: 12px;
+      text-transform: uppercase;
+    }
+
+    & p {
+      margin: 5px 0;
+      font-size: 24px;
+      font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+        "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+    }
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profile {
+    padding: 10px;
+    margin: 10px;
+    background-color: transparent;
+    box-shadow: none;
+
+    & h2 {
+      margin-bottom: 45px;
+
+      & span {
+        display: block;
+        font-size: 80%;
+      }
+    }
+
+    & .main {
+      flex-direction: column;
+      align-items: center;
+
+      & .avatar {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 150px;
+        height: 150px;
+
+        & .add-photo {
+          transform: translateY(-52px);
+        }
+      }
+
+      & form {
+        align-items: center;
+        padding: 35px;
+        border: 1px solid rgba(245, 245, 245, 0.284);
+        border-radius: 5px;
+
+        & input,
+        & .currency-select {
+          min-height: 45px;
+          border-radius: 0px;
+        }
+
+        & input {
+          font-size: 20px;
+        }
+
+        & button {
+          padding: 12px 0;
+          max-width: 50%;
+          margin-top: 30px;
+          border-radius: 3px;
+          background-color: rgb(0, 0, 107);
+          color: white;
+          font-size: 18px;
+        }
+      }
+    }
+  }
+}

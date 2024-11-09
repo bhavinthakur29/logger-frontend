@@ -7,13 +7,13 @@ import {
 } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Login from "./components/Login";
-import Register from "./components/Register";
-import Dashboard from "./components/Dashboard";
-import Profile from "./components/Profile";
-import PrivateRoute from "./components/PrivateRoute";
 import "./App.css";
-import Sidebar from "./components/Sidebar";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import PrivateRoute from "./components/privateRoute/PrivateRoute"
+import Sidebar from "./components/sidebar/Sidebar"
+import Dashboard from "./components/dashboard/Dashboard"
+import Profile from "./components/profile/Profile";
 
 function App() {
   return (

@@ -1,0 +1,129 @@
+.auth-form {
+  box-shadow: 0 0 10px -3px white;
+  border-radius: 5px;
+  background-color: rgba(255, 255, 255, 0.515);
+  padding: 2rem;
+  max-width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  & form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+
+  & input,
+  & button {
+    display: block;
+    &::after {
+      border: 1px solid black;
+    }
+  }
+
+  & button {
+    height: 2rem;
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    cursor: not-allowed; /* By default, button is disabled */
+  }
+
+  & button:enabled {
+    cursor: pointer; /* Enabled button cursor */
+  }
+
+  & button:hover:enabled {
+    background-color: white;
+    color: black;
+    border: 2px solid black;
+  }
+
+  & p {
+    margin-top: 10px;
+  }
+
+  & .password i {
+    position: relative;
+    bottom: 27px;
+    left: 235px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:active {
+      transform: scale(0.9);
+    }
+  }
+
+  & .password-strength {
+    margin-top: 1rem;
+    width: 100%;
+  }
+
+  & .progress {
+    height: 5px;
+    background: #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  & .progress-bar {
+    height: 100%;
+    transition: width 0.3s;
+  }
+
+  /* Remove unused classes for simplicity */
+  & .password-strength-items {
+    list-style: none;
+    padding: 0;
+    margin: 0.5rem 0;
+    width: 100%;
+  }
+
+  & .password-strength-items li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.3rem;
+    font-size: 0.85rem; /* Reduced font size */
+    color: #555; /* Softer color for text */
+  }
+
+  & .password-strength-items li i {
+    margin-right: 0.5rem;
+    color: #d9534f; /* Updated to a softer red */
+  }
+
+  & .password-strength-items li.valid i {
+    color: #5cb85c; /* Softer green for check icon */
+  }
+
+  & .password-strength-items li.invalid i {
+    color: #d9534f; /* Softer red for cross icon */
+  }
+}
+
+@keyframes hover {
+  from {
+    box-shadow: inset 0 0 0 0.01px white;
+  }
+  to {
+    box-shadow: inset 250px 0 0 0.01px white;
+    color: black;
+    border: 2px solid black;
+    cursor: pointer;
+  }
+}
+
+@keyframes leave {
+  from {
+    box-shadow: inset 250px 0 0 0.01px white;
+    color: black;
+  }
+  to {
+    box-shadow: inset 0 0 0 0.01px white;
+  }
+}
