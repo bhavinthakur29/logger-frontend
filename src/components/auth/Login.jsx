@@ -14,23 +14,29 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
+
     try {
-      console.log("Sending login request...");
-      const response = await api.post("/login", {
-        username,
-        password,
-      });
+      console.log("Sending login request with:", { username, password });
+
+      const loginData = {
+        username: username,
+        password: password,
+      };
+
+      console.log("Login payload:", loginData);
+
+      const response = await api.post("/login", loginData);
 
       console.log("Login response:", response);
 
       if (response.data && response.data.token) {
         localStorage.setItem("token", response.data.token);
         localStorage.setItem("user", JSON.stringify(response.data));
-        toast.success("Logged in successfully.");
+        toast.success("Logged in successfully!");
         navigate("/dashboard");
       } else {
-        console.error("Invalid response structure:", response);
-        toast.error("Invalid server response");
+        throw new Error("No token received in response");
       }
     } catch (error) {
       console.error("Login error details:", {
@@ -38,10 +44,13 @@ function Login() {
         response: error.response?.data,
         status: error.response?.status,
       });
+
       toast.error(
         error.response?.data?.message ||
           "Login failed. Please check your credentials."
       );
+    } finally {
+      setIsLoading(false);
     }
   };
 

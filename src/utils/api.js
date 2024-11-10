@@ -1,15 +1,24 @@
+// src/utils/api.js
 import axios from "axios";
 
 const api = axios.create({
   baseURL: "https://logger-backend-u4p0.onrender.com",
-  withCredentials: false, // Change this to false
   headers: {
     "Content-Type": "application/json",
   },
+  withCredentials: true,
 });
 
+// Add request interceptor with logging
 api.interceptors.request.use(
   (config) => {
+    console.log("Request being sent:", {
+      url: config.url,
+      method: config.method,
+      data: config.data,
+      headers: config.headers,
+    });
+
     const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -17,17 +26,22 @@ api.interceptors.request.use(
     return config;
   },
   (error) => {
+    console.error("Request error:", error);
     return Promise.reject(error);
   }
 );
 
+// Add response interceptor with logging
 api.interceptors.response.use(
-  (response) => response,
+  (response) => {
+    console.log("Response received:", response);
+    return response;
+  },
   (error) => {
-    console.error("API Error Details:", {
-      message: error.message,
-      response: error.response?.data,
+    console.error("Response error:", {
       status: error.response?.status,
+      data: error.response?.data,
+      message: error.message,
     });
     return Promise.reject(error);
   }
